@@ -1,0 +1,3 @@
+MAPA_ANCHO = 5
+MAPA_ALTO = 5
+PUERTO_ARDUINO = "/dev/ttyUSB0"
