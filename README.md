@@ -1,6 +1,3 @@
-Aquí tienes una versión mejorada y más estructurada de tu esquema para el proyecto **PCARE - RLP Project**, manteniendo el contenido original pero con un lenguaje más claro, profesional y coherente en estilo Markdown:
-
----
 
 # 🧠 PCARE - RLP Project
 
