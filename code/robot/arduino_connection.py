@@ -2,6 +2,13 @@ import serial
 import time
 
 class ArduinoNano:
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super(ArduinoNano, cls).__new__(cls)
+        return cls._instance
+
     def __init__(self, port, baud_rate=9600, timeout=1):
         """
         Inicializa la conexión serial con el Arduino Nano.
@@ -9,10 +16,12 @@ class ArduinoNano:
         :param baud_rate: Velocidad de comunicación serial (por defecto: 9600).
         :param timeout: Tiempo de espera para la comunicación serial (en segundos).
         """
-        self.port = port
-        self.baud_rate = baud_rate
-        self.timeout = timeout
-        self.serial_connection = None
+        if not hasattr(self, 'initialized'):  # Evitar re-inicialización
+            self.port = port
+            self.baud_rate = baud_rate
+            self.timeout = timeout
+            self.serial_connection = None
+            self.initialized = True
 
     def connect(self):
         """Establece la conexión serial con el Arduino Nano."""
@@ -45,6 +54,13 @@ class ArduinoNano:
         except serial.SerialException as e:
             print(f"Error al leer datos: {e}")
             return None
+
+    def mover_motor(self, motor, valor):
+        pass
+
+    def bomba_agua(self, valor):
+        #Valor 1 es bomba encendida, valor 0 es bomba apagada
+        pass
 
 # Ejemplo de uso:
 if __name__ == "__main__":
