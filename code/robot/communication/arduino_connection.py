@@ -22,6 +22,7 @@ class ArduinoNano:
             self.timeout = timeout
             self.serial_connection = None
             self.initialized = True
+            self.connect()
 
     def connect(self):
         """Establece la conexión serial con el Arduino Nano."""
@@ -56,7 +57,46 @@ class ArduinoNano:
             return None
 
     def mover_motor(self, motor, valor):
-        pass
+                """
+                Envía un comando al Arduino Nano para mover un motor específico.
+                :param motor: Identificador del motor (e.g., 'MOTOR1').
+                :param valor: Valor para controlar el motor (e.g., velocidad o posición).
+                """
+                if not self.serial_connection or not self.serial_connection.is_open:
+                    print("La conexión serial no está abierta.")
+                    return
+                try:
+                    command = f"MOTOR:{motor}:{valor}\n"
+                    self.serial_connection.write(command.encode())  # Enviar comando
+                    print(f"Comando enviado: {command.strip()}")
+                except serial.SerialException as e:
+                    print(f"Error al enviar comando al motor: {e}")
+
+    def bomba_agua(self, valor):
+        """
+        Envía un comando al Arduino Nano para controlar la bomba de agua.
+        Activa la bomba con 1, espera el tiempo especificado en valor, y luego la apaga.
+        :param valor: Tiempo en segundos que la bomba estará encendida.
+        """
+        if not self.serial_connection or not self.serial_connection.is_open:
+            print("La conexión serial no está abierta.")
+            return
+        try:
+            # Encender la bomba
+            command_on = "BOMBA:1\n"
+            self.serial_connection.write(command_on.encode())
+            print(f"Comando enviado: {command_on.strip()}")
+            
+            # Esperar el tiempo especificado
+            time.sleep(valor)
+            
+            # Apagar la bomba
+            command_off = "BOMBA:0\n"
+            self.serial_connection.write(command_off.encode())
+            print(f"Comando enviado: {command_off.strip()}")
+        except serial.SerialException as e:
+            print(f"Error al controlar la bomba de agua: {e}")
+
 
     def bomba_agua(self, valor):
         #Valor 1 es bomba encendida, valor 0 es bomba apagada
@@ -65,16 +105,15 @@ class ArduinoNano:
 # Ejemplo de uso:
 if __name__ == "__main__":
     arduino = ArduinoNano(port='/dev/ttyUSB0') 
-    arduino.connect()
 
-    try:
-        sensor1_data = arduino.read_sensor("SENSOR1")
-        print(f"Sensor 1: {sensor1_data}")
+    # Leer el sensor de humedad
+    humedad = arduino.read_sensor("SENSOR:HUMEDAD")
+    print(f"Humedad: {humedad}")
 
-        sensor2_data = arduino.read_sensor("SENSOR2")
-        print(f"Sensor 2: {sensor2_data}")
+    # Leer el sensor de luz
+    luz = arduino.read_sensor("SENSOR:LUZ")
+    print(f"Luz: {luz}")
 
-        sensor3_data = arduino.read_sensor("SENSOR3")
-        print(f"Sensor 3: {sensor3_data}")
-    finally:
-        arduino.disconnect()
+    # Leer el sensor de distancia
+    distancia = arduino.read_sensor("SENSOR:DISTANCIA")
+    print(f"Distancia: {distancia}")
