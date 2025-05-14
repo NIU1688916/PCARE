@@ -24,6 +24,7 @@ void loop() {
 
     if (cmd.startsWith("MOTOR:")) {
       int separatorIndex = cmd.indexOf(':', 6);
+      //Aqui dependiendo del motor y del valor se enciende o apaga el motor
       if (separatorIndex != -1) {
         int motor = cmd.substring(6, separatorIndex).toInt();
         int valor = cmd.substring(separatorIndex + 1).toInt();

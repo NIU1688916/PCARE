@@ -1,15 +1,11 @@
-from estado import robot_estado
-from motores import activar_bomba_agua 
+from estado import EstadoRobot
+from communication.app_interface import RobotServer
 
-def evaluar_posicion():
-    l = robot_estado.lecturas
-    p = robot_estado.planta
-    return l.humedad < p.humedad_opt and l.luz >= p.luz_min
 
 def ciclo_robot():
-    if evaluar_posicion():
-        activar_bomba_agua(robot_estado.planta.tiempo_riego)
-    else:
-        print("Buscando mejor posición...")
+    estado = EstadoRobot()
+    server = RobotServer(estado)
+    server.run_in_thread()
+    estado.iniciar_exploracion()
         
     

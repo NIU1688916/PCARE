@@ -56,7 +56,7 @@ class ArduinoNano:
             print(f"Error al leer datos: {e}")
             return None
 
-    def mover_motor(self, motor, valor):
+    def mover_motor(self, motor, valor, velocidad=10):
                 """
                 Envía un comando al Arduino Nano para mover un motor específico.
                 :param motor: Identificador del motor (e.g., 'MOTOR1').
@@ -97,10 +97,6 @@ class ArduinoNano:
         except serial.SerialException as e:
             print(f"Error al controlar la bomba de agua: {e}")
 
-
-    def bomba_agua(self, valor):
-        #Valor 1 es bomba encendida, valor 0 es bomba apagada
-        pass
 
 # Ejemplo de uso:
 if __name__ == "__main__":
