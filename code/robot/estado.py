@@ -237,5 +237,3 @@ class EstadoRobot:
         self.celda_actual = celda
         self.celdas.append(celda)
         return celda
-
-robot_estado = EstadoRobot()

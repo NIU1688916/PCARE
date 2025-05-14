@@ -29,8 +29,6 @@ class RobotServer:
                 datos = request.get_json()
                 if not datos:
                     raise ValueError("No se recibieron datos en la solicitud.")
-                
-                # Validar que los datos contengan las claves necesarias
                 # Extraer valores de los datos recibidos
                 nombre = datos.get("nombre")
                 humedad_opt = datos.get("humedad_opt")
