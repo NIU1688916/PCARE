@@ -1,6 +1,6 @@
 <template>
     <div class="inicio">
-        <h1>Página de gestión del Roboto PCARE</h1>
+        <h1>Página de gestión del Robot PCARE</h1>
         <img src="@/assets/logo.png" alt="Logo PCARE" class="logo" />
     </div>
 </template>
