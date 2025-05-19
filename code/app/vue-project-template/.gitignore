@@ -28,3 +28,8 @@ coverage
 *.sw?
 
 *.tsbuildinfo
+
+# Cordova
+/pcare/platforms
+/pcare/plugins
+/public/cordova.js
