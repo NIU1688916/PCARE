@@ -1,7 +1,8 @@
 
 # 🧠 PCARE - RLP Project
 
-*(Pendiente: incluir imagen del logo o del robot)*
+<img width="300" alt="Captura de pantalla 2025-05-21 122305" src="https://github.com/user-attachments/assets/7b2c1426-09a6-4849-b208-ec65227c055f" />
+
 
 ## 📘 Project Description
 
