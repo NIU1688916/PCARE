@@ -8,6 +8,7 @@ import numpy as np
 import os
 from utils.navigation import Navigation
 from vision.mapeo import ORBSLAM2Mapper
+from utils.frontier import detect_frontiers, get_closest_frontier
 import config
 class Planta:
     def __init__(self, nombre, humedad_opt, luz_opt):
@@ -87,13 +88,22 @@ class EstadoRobot:
     def __init__(self):
         self.celdas = []
         self.celda_actual = None
-        self.planta = None
+        self.planta = Planta("Menta", humedad_opt=60, luz_opt=200)  # Planta de ejemplo
         self.modo = "Exploracion" #Modo auto 
-        self.mapa_habitacion = []
         self.base = (0, 0) # Coordenadas de la base
         self.navigation = Navigation(self)  # Instancia de la clase Navigation
         self.monitor_ambiente_thread = None
         self.orbslam2 = ORBSLAM2Mapper(camera_params_path="camera_params.yaml", camera_index=0, resolution=(640, 480), framerate=30) #Esto hay que verificar si los datos estan bien
+
+        self.posicion = (0, 0)  # (x, y). Se actualiza con cada movimiento del robot
+        self.orientacion = 0  # 0=norte, 1=este, 2=sur, 3=oeste
+        self.tamaño_mapa = 100
+        self.mapa = np.full((self.tamaño_mapa, self.tamaño_mapa), -1)  # -1 = desconocido, 0 = libre, 1 = visitado
+        self.luz_map = np.zeros((self.tamaño_mapa, self.tamaño_mapa))
+        self.historial_luz = {}  # (x, y) → [lecturas]
+        self.lecturas = Lecturas()
+
+
 
     def set_planta(self, planta):
         """
@@ -122,9 +132,55 @@ class EstadoRobot:
         pass
 
     def iniciar_exploracion(self):
-        self.mapear_habitacion()
+        """ self.mapear_habitacion()
         self.explorar_habitacion()
-        self.cambiar_modo("Luz") # Para encontrar la luz optima
+        self.cambiar_modo("Luz") # Para encontrar la luz optima """
+        while self.agua_restante > 0:
+            # 1. Detectar fronteras
+            fronteras = detect_frontiers(self.mapa)
+            if not fronteras:
+                print("No quedan zonas por explorar")
+                break
+
+            # 2. Elegir frontera más cercana
+            objetivo = get_closest_frontier(fronteras, (self.x, self.y))
+            if not objetivo:
+                break
+
+            # 3. Ir hasta la frontera con A*
+            print(f"🧭 Navegando hacia {objetivo}")
+            x = self.posicion[0]
+            y = self.posicion[1]
+            exito = self.navigation.go_to((x, y), objetivo)
+            if not exito:
+                print(f"No se pudo llegar a {objetivo}")
+                continue
+
+            # 4. Tomar lectura y actualizar mapa
+            self.lecturas.tomar_lecturas()
+            humedad, luz, _ = self.lecturas.get_lecturas()
+            
+            planta = self.planta
+
+            if planta.humedad_opt - 10 <= humedad <= planta.humedad_opt + 10 and luz >= planta.luz_min:
+                print("Condiciones adecuadas. Regando...")
+                activar_bomba_agua()
+                self.agua_restante -= 1
+            else:
+                print("Condiciones no adecuadas. Continuando exploración...")
+            
+            print("Exploración finalizada o sin agua. Volviendo a base...")
+            self.orientar_a_base() 
+            self.navigation.volver_a_base() # aruco??? camara??
+
+    def actualizar_lecturas(self):
+        humedad, luz, _ = self.lecturas.get_lecturas()
+        self.mapa[self.x][self.y] = 0  # zona libre
+        self.luz_map[self.x][self.y] = luz
+        self.historial_luz.setdefault((self.x, self.y), []).append((time.time(), luz))
+
+        if humedad < self.planta.humedad_opt:
+            activar_bomba_agua()
 
     def generar_mapa_actual(self):
         #TODO: Implementar la logica para generar el mapa actual del SLAM como lo ve el robot
@@ -193,6 +249,7 @@ class EstadoRobot:
                         self.monitor_ambiente_thread.join()  # Unir el thread al principal
 
                 time.sleep(600)  # Esperar 10 minutos
+    
     def cambiar_modo(self, nuevo_modo):
         """
         Cambia el modo de operación del robot.
@@ -227,13 +284,21 @@ class EstadoRobot:
             #Este modo se encarga de explorar la habitacion
             self.iniciar_exploracion(self)
 
-
-
-
     def nueva_celda(self, x, y):
-        #Esto se encarga de crear una nueva celda y registrar los datos
+        """ #Esto se encarga de crear una nueva celda y registrar los datos
         celda = Celda(x, y)
         celda.tomar_lecturas()
         self.celda_actual = celda
         self.celdas.append(celda)
-        return celda
+        return celda """
+
+        """
+        Actualiza la posición del robot y marca la celda como visitada.
+        """
+        self.posicion = (x, y)
+
+        if 0 <= x < self.mapa.shape[0] and 0 <= y < self.mapa.shape[1]:
+            self.mapa[x][y] = 1  # Marca como visitado
+            print(f"✅ Robot movido a celda ({x}, {y}).")
+        else:
+            print(f"⚠️ Celda ({x}, {y}) está fuera del mapa.")
