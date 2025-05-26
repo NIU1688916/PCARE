@@ -96,6 +96,20 @@ class ArduinoNano:
             print(f"Comando enviado: {command_off.strip()}")
         except serial.SerialException as e:
             print(f"Error al controlar la bomba de agua: {e}")
+    
+    def leer_ultrasonico(self):
+        """
+        Envía el comando para leer la distancia ultrasónica desde el Arduino.
+        :return: Distancia en cm como float, o None si falla.
+        """
+        try:
+            self.serial.write(b'DISTANCIA\n')
+            linea = self.serial.readline().decode().strip()
+            return float(linea)
+        except Exception as e:
+            print(f"Error leyendo distancia: {e}")
+            return None
+
 
 
 # Ejemplo de uso:

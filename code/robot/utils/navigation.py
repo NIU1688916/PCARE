@@ -88,7 +88,18 @@ class Navigation:
                 orientacion_actual = nueva_orientacion
 
             # Avanzar
-            avanzar()
+            paso = avanzar(1)
+            if not paso:
+                # Marcar la celda como ocupada
+                mapa[x][y].es_visitado = True
+                mapa[x][y].es_obstaculo = True
+
+                girar(orientacion_actual, -orientacion_actual)
+                orientacion_actual = -orientacion_actual  # Actualizar orientación al girar 180°
+                self.go_to(self.estado_robot.posicion, posicion_destino)  # Reintentar
+                return False  # No se pudo avanzar
+            
+            print(f"Avanzando a {siguiente}")
 
             # Actualizar estado interno
             x, y = siguiente

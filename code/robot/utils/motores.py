@@ -3,6 +3,7 @@ from ..communication.arduino_connection import ArduinoNano
 
 motor1 = 1
 motor2 = 2
+DISTANCIA_SEGURIDAD = 15  # cm
 
 def conversion(distancia, velocidad):
     """
@@ -24,14 +25,29 @@ def activar_bomba_agua():
     #Esperar X segundos (Hay que calcular cuanto agua necessita)
     ArduinoNano.bomba_agua(1) #El parametro es el tiempo que la bomba estara encendida
     
-def avanzar(distancia, velocidad=10):
-    tiempo_espera = conversion(distancia, velocidad)
-    #Activar el motor para avanzar
-    ArduinoNano.mover_motor(motor1,1,velocidad) 
-    ArduinoNano.mover_motor(motor2,1,velocidad) 
-    time.sleep(tiempo_espera)
+def avanzar(distancia, velocidad=100):
+    tiempo_total = conversion(distancia, velocidad)
+    tiempo_paso = 0.2  # ajustar: cuanto avanza cada paso corto
+    pasos = int(tiempo_total / tiempo_paso)
+
+    for _ in range(pasos):
+        # Leer distancia
+        distancia_objeto = ArduinoNano.leer_ultrasonico()
+        if distancia_objeto is not None and distancia_objeto < DISTANCIA_SEGURIDAD:
+            print("Obstáculo detectado. Parando.")
+            ArduinoNano.mover_motor(motor1, 0, 0)
+            ArduinoNano.mover_motor(motor2, 0, 0)
+            return False  # Indica que no se pudo avanzar
+
+        # Avanzar un paso corto
+        ArduinoNano.mover_motor(motor1, 1, velocidad)
+        ArduinoNano.mover_motor(motor2, 1, velocidad)
+        time.sleep(tiempo_paso)
+
+    # Detener motores al final
     ArduinoNano.mover_motor(motor1, 0, 0)
     ArduinoNano.mover_motor(motor2, 0, 0)
+    return True  # Avance completado
 
 
     time.sleep(tiempo_espera)  # Esperar el tiempo calculado

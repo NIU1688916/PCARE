@@ -107,6 +107,8 @@ class EstadoRobot:
         celda_base.visitada = True
         self.mapa[0][0] = celda_base
 
+        self.agua_restante = 100
+
 
 
     def set_planta(self, planta):
@@ -178,6 +180,8 @@ class EstadoRobot:
         print("Exploración finalizada o sin agua. Volviendo a base...")
         self.navigation.volver_a_base()
         self.navigation.orientar_a_base() 
+
+        time.sleep(60*2)
 
     def actualizar_lecturas(self):
         humedad, luz, _ = self.lecturas.get_lecturas()
