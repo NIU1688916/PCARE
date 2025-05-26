@@ -60,13 +60,13 @@ class Lecturas:
         return humedad, luminocidad, intensidad_wifi
 
 class Celda:
-    def __init__(self, x, y):
+    def __init__(self, x, y,es_base=False):
         self.x = x
         self.y = y
         self.lecturas = Lecturas()
         self.es_base = False
         self.es_obstaculo = False
-
+        self.visitada = False
 
     def get_posicion(self):
         """
@@ -74,6 +74,7 @@ class Celda:
         :return: Tupla con las coordenadas (x, y).
         """
         return self.x, self.y
+    
     def tomar_lecturas(self):
         self.lecturas.tomar_lecturas()
 
@@ -98,10 +99,13 @@ class EstadoRobot:
         self.posicion = (0, 0)  # (x, y). Se actualiza con cada movimiento del robot
         self.orientacion = 0  # 0=norte, 1=este, 2=sur, 3=oeste
         self.tamaño_mapa = 100
-        self.mapa = np.full((self.tamaño_mapa, self.tamaño_mapa), -1)  # -1 = desconocido, 0 = libre, 1 = visitado
+        self.mapa = np.full((self.tamaño_mapa, self.tamaño_mapa), None)  # -1 = desconocido, 0 = libre, 1 = visitado
         self.luz_map = np.zeros((self.tamaño_mapa, self.tamaño_mapa))
         self.historial_luz = {}  # (x, y) → [lecturas]
-        self.lecturas = Lecturas()
+        
+        celda_base = Celda(0, 0, es_base=True)
+        celda_base.visitada = True
+        self.mapa[0][0] = celda_base
 
 
 
@@ -143,7 +147,7 @@ class EstadoRobot:
                 break
 
             # 2. Elegir frontera más cercana
-            objetivo = get_closest_frontier(fronteras, (self.x, self.y))
+            objetivo = get_closest_frontier(fronteras, self.posicion)
             if not objetivo:
                 break
 
@@ -157,21 +161,23 @@ class EstadoRobot:
                 continue
 
             # 4. Tomar lectura y actualizar mapa
-            self.lecturas.tomar_lecturas()
-            humedad, luz, _ = self.lecturas.get_lecturas()
+            self.mapa[x][y].tomar_lecturas()
+            
             
             planta = self.planta
+            humedad, luz, _ = self.mapa[x][y].lecturas.get_lecturas()
 
-            if planta.humedad_opt - 10 <= humedad <= planta.humedad_opt + 10 and luz >= planta.luz_min:
+            while planta.humedad_opt - 10 <= humedad <= planta.humedad_opt + 10 and luz >= planta.luz_min:
                 print("Condiciones adecuadas. Regando...")
                 activar_bomba_agua()
                 self.agua_restante -= 1
-            else:
-                print("Condiciones no adecuadas. Continuando exploración...")
+                time.sleep(2)  # Simula el tiempo de riego
+                humedad, luz, _ = self.mapa[x][y].lecturas.get_lecturas()
             
-            print("Exploración finalizada o sin agua. Volviendo a base...")
-            self.orientar_a_base() 
-            self.navigation.volver_a_base() # aruco??? camara??
+            
+        print("Exploración finalizada o sin agua. Volviendo a base...")
+        self.navigation.volver_a_base()
+        self.navigation.orientar_a_base() 
 
     def actualizar_lecturas(self):
         humedad, luz, _ = self.lecturas.get_lecturas()
@@ -295,10 +301,8 @@ class EstadoRobot:
         """
         Actualiza la posición del robot y marca la celda como visitada.
         """
-        self.posicion = (x, y)
-
-        if 0 <= x < self.mapa.shape[0] and 0 <= y < self.mapa.shape[1]:
-            self.mapa[x][y] = 1  # Marca como visitado
-            print(f"✅ Robot movido a celda ({x}, {y}).")
-        else:
-            print(f"⚠️ Celda ({x}, {y}) está fuera del mapa.")
+        
+        if self.mapa[x][y] is None:
+            self.mapa[x][y] = Celda(x, y)
+        
+        self.mapa[x][y].visitada = True

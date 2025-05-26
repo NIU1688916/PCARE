@@ -3,6 +3,7 @@ import math
 from frontier import detect_frontiers, get_closest_frontier
 import heapq  # Para la cola de prioridad en A*
 import time
+from vision.aruco_tracker import detectar_aruco_y_orientacion
 
 class Navigation:
     def __init__(self, estado_robot):
@@ -21,7 +22,7 @@ class Navigation:
         for dx, dy in [(-1,0), (1,0), (0,-1), (0,1)]:
             nx, ny = x + dx, y + dy
             if 0 <= nx < len(mapa) and 0 <= ny < len(mapa[0]):
-                if mapa[nx][ny] == 0:  # Solo celdas libres
+                if mapa[nx][ny].es_visitado == False:  # Solo celdas libres
                     vecinos.append((nx, ny))
         return vecinos
     
@@ -94,55 +95,37 @@ class Navigation:
             self.estado_robot.nueva_celda(x, y)
 
         self.estado_robot.orientacion = orientacion_actual
+        self.estado_robot.posicion = (x, y)
         return True
 
 
-    def orientate_to_base(self, posicion_base, aruco_detector, camera):
+    def convertir_angulo_a_orientacion(angulo):
+        if angulo < 45 or angulo >= 315:
+            return 0  # Norte
+        elif angulo < 135:
+            return 1  # Este
+        elif angulo < 225:
+            return 2  # Sur
+        else:
+            return 3  # Oeste
+
+    def orientate_to_base(self, orientacion_actual=0, id_aruco=0):
         """
         Orienta el robot hacia la base utilizando un marcador ArUco.
-        :param posicion_base: Posición de la base (x, y).
-        :param aruco_detector: Detector de marcadores ArUco.
-        :param camera: Cámara para capturar imágenes.
         """
-        orientacion_actual = self.estado_robot.orientacion
-
-        while True:
-            # Capturar una imagen de la cámara
-            frame = camera.read()
-            
-            # Detectar marcadores ArUco en la imagen
-            corners, ids, _ = aruco_detector.detectMarkers(frame)
-            
-            if ids is not None and len(ids) > 0:
-                # Suponiendo que el marcador de la base tiene un ID específico
-                base_marker_id = 1
-                if base_marker_id in ids:
-                    # Obtener la posición del marcador de la base
-                    index = list(ids).index(base_marker_id)
-                    marker_corners = corners[index]
-                    
-                    # Calcular el ángulo de orientación hacia el marcador
-                    center_x = (marker_corners[0][0][0] + marker_corners[0][2][0]) / 2
-                    frame_center_x = frame.shape[1] / 2
-
-                    diferencia = center_x - frame_center_x
-                    
-                    if abs(diferencia) < 20:
-                        print("Base centrada, orientación completa.")
-                        break  # Ya está alineado
-                   
-                    # Aquí simulamos giro incremental. Puedes usar una orientación temporal.
-                    # Si el marcador está a la derecha, gira hacia la derecha (suma 1 modulo 4)
-                    if diferencia > 0:
-                        nueva_orientacion = (orientacion_actual + 1) % 4
-                    else:
-                        nueva_orientacion = (orientacion_actual - 1) % 4
-
-                    girar(orientacion_actual, nueva_orientacion)
-                    orientacion_actual = nueva_orientacion
-                    self.estado_robot.orientacion = orientacion_actual
-            
-            time.sleep(0.1)  # Pequeña pausa entre giros
+        print("Buscando el marcador de la base...")
+        angulo = detectar_aruco_y_orientacion(id_objetivo=id_aruco)
+        
+        if angulo is None:
+            print("No se detectó el marcador de la base.")
+            return
+        
+        print(f"Ángulo detectado: {angulo:.2f}°")
+        
+        nueva_orientacion = self.convertir_angulo_a_orientacion(angulo)
+        girar(self.estado_robot.orientacion, nueva_orientacion)
+             
+        print("Robot orientado hacia el marcador de la base.")
 
     def explorar(self):
         # Aquí podrías llamar a detect_frontiers y usar go_to para moverte a la frontera más cercana
@@ -153,54 +136,18 @@ class Navigation:
         else:
             print("No quedan fronteras para explorar")
 
-    def volver_a_base(self, aruco_detector=None, camera=None):
+    def volver_a_base(self):
         """
         Hace que el robot regrese a la base desde su posición actual.
         """
-        mapa = self.estado_robot.mapa
-        posicion_actual = self.estado_robot.posicion
-        posicion_base = self.estado_robot.base
-        orientacion = self.estado_robot.orientacion
+        base = self.estado_robot.base # (x,y)
+        posicion_actual = self.estado_robot.posicion # (x,y)
 
-        # Calcular el camino a la base
-        camino = self._a_star(mapa, posicion_actual, posicion_base)
+        if posicion_actual == base:
+            print("Ya estamos en la base.")
+            return
+        
+        print(f"Volviendo a la base desde {posicion_actual} hacia {base}")
 
-        if not camino:
-            print("No se pudo calcular el camino a la base.")
-            return False
-
-        # Recorrer el camino (empezamos desde la segunda celda, ya que la primera es la actual)
-        for siguiente_pos in camino[1:]:
-            x_actual, y_actual = self.estado_robot.posicion
-            x_siguiente, y_siguiente = siguiente_pos
-
-            # Calcular nueva orientación deseada
-            dx = x_siguiente - x_actual
-            dy = y_siguiente - y_actual
-
-            if dx == -1:
-                nueva_orientacion = 0  # norte
-            elif dx == 1:
-                nueva_orientacion = 2  # sur
-            elif dy == 1:
-                nueva_orientacion = 1  # este
-            elif dy == -1:
-                nueva_orientacion = 3  # oeste
-            else:
-                print("Movimiento inválido.")
-                continue
-
-            # Girar si es necesario
-            if orientacion != nueva_orientacion:
-                girar(orientacion, nueva_orientacion)
-                orientacion = nueva_orientacion
-
-            # Avanzar una celda (se asume que la distancia es 1 unidad)
-            avanzar(distancia=1)
-            self.estado_robot.nueva_celda(x_siguiente, y_siguiente, orientacion)
-
-        print("Llegada a la base.")
-
-        # Orientarse hacia el marcador ArUco si se proporcionan detector y cámara
-        if aruco_detector is not None and camera is not None:
-            self.orientate_to_base(posicion_base, aruco_detector, camera)
+        self.go_to(posicion_actual, base)
+        
