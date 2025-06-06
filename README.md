@@ -84,7 +84,9 @@ Aspectos que hacen único al robot:
 * Python 3.10+ ([Descargar](https://www.python.org/))
 * Visual Studio Code ([Descargar](https://code.visualstudio.com/))
 * Conda / Miniconda ([Descargar](https://docs.conda.io/en/latest/miniconda.html))
-* ROS, Rviz, etc. (dependiendo del stack)
+
+https://github.com/luigifreda/pyslam
+
 
 Subir el archivo `requirements.txt`, que se puede generar con Miniconda i sus entornos:
 

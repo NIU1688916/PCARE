@@ -162,3 +162,8 @@ class Navigation:
 
         self.go_to(posicion_actual, base)
         
+    def posicionarse_agua(self):
+        #Funcion que una vez esta en la posicion de la base se posiciona para recibir agua (Solo se posiciona)
+        #TODO: Hacer que se posicione con la base
+        pass
+        
