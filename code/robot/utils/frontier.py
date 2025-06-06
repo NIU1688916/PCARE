@@ -7,14 +7,15 @@ def is_frontier_cell(map, x, y):
                 return True
     return False
 
-def detect_frontiers(map):
+def detect_frontiers(map,limite):
     frontiers = []
     for x in range(1, len(map)-1):
         for y in range(1, len(map[0])-1):
             celda = map[x][y]
             if celda and celda.visitada:
                 if is_frontier_cell(map, x, y):
-                    frontiers.append((x, y))
+                    if x<=limite and y<=limite:
+                        frontiers.append((x, y))
     return frontiers
 
 def get_closest_frontier(frontiers, robot_position):

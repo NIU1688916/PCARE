@@ -133,7 +133,7 @@ class EstadoRobot:
     def iniciar_exploracion(self):
         
         while not self.exploracionFinalizada :
-            fronteras = detect_frontiers(self.mapa)
+            fronteras = detect_frontiers(self.mapa, self.tamaño_mapa)
             if not fronteras:
                 print("No quedan zonas por explorar")
                 self.exploracionFinalizada = True
