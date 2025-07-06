@@ -3,6 +3,19 @@
 
 <img width="300" alt="Captura de pantalla 2025-05-21 122305" src="https://github.com/user-attachments/assets/7b2c1426-09a6-4849-b208-ec65227c055f" />
 
+## 🧭 Table of Contents
+
+1. Project Description
+2. Demo
+3. Components
+4. Hardware Scheme
+5. Software Scheme
+6. How to Use
+7. Amazing Contributions
+8. 3D Model
+9. Software Requirements
+10. Support
+11. Bibliography
 
 ## 📘 Project Description
 
@@ -16,20 +29,7 @@ Está pensado para personas que desean mantener sus plantas saludables sin preoc
 
 [Ver video en Google Drive](https://drive.google.com/file/d/1RFXhxHZZ7uanfg3AD7WiqcH8D6Dph1f0/view?usp=sharing)
 
-## 🧭 Table of Contents
 
-1. Project Description
-2. Demo
-3. Components
-4. Hardware Scheme
-5. Software Scheme
-6. How to Use
-7. Amazing Contributions
-8. 3D Model
-9. Software Requirements
-10. License
-11. Support
-12. Bibliography
 
 ## 🔩 Components
 
