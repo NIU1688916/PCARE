@@ -79,27 +79,23 @@ Aspectos que hacen único al robot:
 * Enlace de descarga del archivo `.stl` o `.obj` (ubicado en la carpeta `model_3D`).
 * Opcional: enlace a visualizar el modelo en línea (ej. [TinkerCAD](https://www.tinkercad.com/), [Sketchfab](https://sketchfab.com/)).
 
+
+Perfecto, aquí tienes el bloque actualizado con las dependencias de software y bibliotecas, siguiendo el mismo formato. He añadido también los enlaces de descarga para **Fritzing**, **Vue.js** y el **IDE de Arduino**, y he organizado los imports para que sean más claros si deseas pegarlos en un script:
+
+---
+
 ## 💾 Software Requirements
 
 * Python 3.10+ ([Descargar](https://www.python.org/))
 * Visual Studio Code ([Descargar](https://code.visualstudio.com/))
 * Conda / Miniconda ([Descargar](https://docs.conda.io/en/latest/miniconda.html))
+* ORB-SLAM2 ([Repositorio](https://github.com/raulmur/ORB_SLAM2))
+* ORB-SLAM2 Python Bindings ([Repositorio](https://github.com/GiordanoLaminetti/ORB_SLAM2-PythonBindings/tree/master))
+* pyboostcvconverter ([Repositorio](https://github.com/Algomorph/pyboostcvconverter/tree/master))
+* Fritzing ([Descargar](https://fritzing.org/download/))
+* Vue.js ([Documentación oficial](https://vuejs.org/))
+* Arduino IDE ([Descargar](https://www.arduino.cc/en/software))
 
-https://github.com/luigifreda/pyslam
-
-
-Subir el archivo `requirements.txt`, que se puede generar con Miniconda i sus entornos:
-
-```bash
-pip freeze > requirements.txt
-```
-
-También se recomienda mencionar todas las herramientas utilizadas durante el desarrollo (editores, simuladores, etc.).
-
-## 📄 License
-
-Se recomienda usar una licencia **Creative Commons (CC-BY-SA)** o similar, según el uso que se permita. Hay que especifcar tipo de licencia
-Más información en: [https://creativecommons.org/](https://creativecommons.org/)
 
 ## 🏫 Support
 Hay que poner definicion de porque ayudaron y en que
@@ -110,9 +106,7 @@ Hay que poner definicion de porque ayudaron y en que
 ## 📚 Bibliography
 
 * Repositorios de referencia:
+* https://github.com/weixr18/Pi-SLAM/tree/main?tab=readme-ov-file
 * Usar IEEE
-
-  * [Robofinder](https://github.com/...)
-  * [Jetsy](https://github.com/...)
 * Artículos, manuales y documentación oficial de los paquetes utilizados.
 
