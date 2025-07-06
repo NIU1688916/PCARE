@@ -6,7 +6,10 @@
 
 ## 📘 Project Description
 
-Descripción general del proyecto. Explicar de forma breve qué hace el robot, cuál es su propósito y en qué contexto se desarrolla (por ejemplo: SLAM, navegación autónoma, asistencia, etc.).
+**"Cuidar tus plantas, incluso cuando no estás."**
+Sistema robótico autónomo diseñado para el mantenimiento de una planta sin supervisión directa. Es capaz de desplazarse de forma inteligente dentro del espacio para posicionarse en la zona con mejor iluminación. Incorpora sensores de humedad para monitorizar el estado de la tierra y activar un sistema de riego automático cuando sea necesario. Funciona con batería recargable y realiza un seguimiento continuo de las condiciones ambientales que rodean a la planta.
+Está pensado para personas que desean mantener sus plantas saludables sin preocuparse por los cuidados diarios. Su diseño compacto, móvil y autónomo lo hace especialmente útil en entornos interiores sin acceso constante a luz natural o riego manual.
+
 
 ## 🎥 Demo
 
@@ -52,14 +55,7 @@ Descripción general del proyecto. Explicar de forma breve qué hace el robot, c
 
 ## 💻 Software Scheme
 
-* Diagrama general del software (flujo de módulos o arquitectura).
-* Descripción breve de cada módulo:
-
-  * `navegacion.py`: módulo encargado de la planificación de trayectorias.
-  * `slam.py`: realiza el mapeo del entorno.
-  * `control.py`: lógica de control de motores.
-    *(y así sucesivamente...)*
-
+TODO
 
 ## 🚀 How to Use
 
@@ -151,13 +147,7 @@ Esto levantará el servidor de desarrollo Vue.js.
 
 ## 🌟 Amazing Contributions
 
-Aspectos que hacen único al robot:
-
-* Capacidad de SLAM en tiempo real
-* Reconocimiento de objetos mediante IA
-* Control por voz o gestos
-* Integración con plataformas de asistencia remota
-  *(etc.)*
+TODO
 
 ## 🧱 3D Model
 * Archivos STL ubicados en la carpeta `Designs`:
@@ -182,10 +172,8 @@ Aspectos que hacen único al robot:
 
 
 ## 🏫 Support
-Hay que poner definicion de porque ayudaron y en que
 * Escola d’Enginyeria UAB
 * OpenLabs
-* Profesores, mentores o tutores del proyecto
 
 ## 📚 Bibliography
 
