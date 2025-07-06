@@ -7,6 +7,7 @@
 ## 📘 Project Description
 
 **"Cuidar tus plantas, incluso cuando no estás."**
+
 Sistema robótico autónomo diseñado para el mantenimiento de una planta sin supervisión directa. Es capaz de desplazarse de forma inteligente dentro del espacio para posicionarse en la zona con mejor iluminación. Incorpora sensores de humedad para monitorizar el estado de la tierra y activar un sistema de riego automático cuando sea necesario. Funciona con batería recargable y realiza un seguimiento continuo de las condiciones ambientales que rodean a la planta.
 Está pensado para personas que desean mantener sus plantas saludables sin preocuparse por los cuidados diarios. Su diseño compacto, móvil y autónomo lo hace especialmente útil en entornos interiores sin acceso constante a luz natural o riego manual.
 
