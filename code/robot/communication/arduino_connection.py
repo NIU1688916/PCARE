@@ -56,6 +56,31 @@ class ArduinoNano:
             print(f"Error al leer datos: {e}")
             return None
 
+    def avanzar(bool: adelante):
+        if not self.serial_connection or not self.serial_connection.is_open:
+            print("La conexión serial no está abierta.")
+            return
+        try:
+            VIZQ = 150
+            VDER = 225
+            command = f"MOTOR:MOVER:{VIZQ}:{VDER}:{adelante}\n"
+            self.serial_connection.write(command.encode())  # Enviar comando
+            print(f"Comando enviado: {command.strip()}")
+        except serial.SerialException as e:
+            print(f"Error al enviar comando al motor: {e}")
+
+    def girar():
+        if not self.serial_connection or not self.serial_connection.is_open:
+            print("La conexión serial no está abierta.")
+            return
+        try:
+            command = f"MOTOR:GURAR:{TRUE}\n"
+            self.serial_connection.write(command.encode())  # Enviar comando
+            print(f"Comando enviado: {command.strip()}")
+        except serial.SerialException as e:
+            print(f"Error al enviar comando al motor: {e}")
+    
+
     def mover_motor(self, motor, valor, velocidad=10):
                 """
                 Envía un comando al Arduino Nano para mover un motor específico.
