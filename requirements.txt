@@ -1,8 +1,6 @@
-cv2
-serial
-math
+numpy
+matplotlib
+opencv-python
 flask
 pyngrok
-matplotlib
-numpy
-orbslam2
+pyserial
