@@ -63,15 +63,6 @@ Faltaria AÑADIR los motores
   * `control.py`: lógica de control de motores.
     *(y así sucesivamente...)*
 
-Perfecto, entonces el script que quieres ejecutar con cron es el `main.py` que está dentro de `code/robot`.
-
-Voy a corregir esa parte para que el cron ejecute ese script, usando rutas absolutas y con la estructura clara.
-
----
-
-## Versión corregida y definitiva de tu How to Use
-
----
 
 ## 🚀 How to Use
 
