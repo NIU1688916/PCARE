@@ -186,3 +186,10 @@ Esto levantará el servidor de desarrollo Vue.js.
 
 [2] R. Rodríguez, “librobot,” GitHub repository, 2024. [Online]. Available: https://github.com/RubenRS040398/librobot?tab=readme-ov-file
 
+[3]  M. Abehsera, “CONTROLING WATER PUMPS WITH L298N MOTORDRIVERS,” YouTube, video, 2024. [Online]. Available: https://www.youtube.com/watch?v=aSZ91Xecu2M
+
+[4]  P. Kumar, “How to Control A Water Pump With Arduino,” Makerguides.com, 2023. [Online]. Available: https://www.makerguides.com/how-to-control-a-water-pump-with-arduino/
+
+[5]  lasmonedasdejudas, “Sistema de riego hecho con Arduino y varios sensores de luz, temperatura y humedad que usa una minibomba de agua,” *LAS MONEDAS DE JUDAS*. 2024. [Online]. Available: https://lasmonedasdejudas.wordpress.com/2017/01/31/sistema-de-riego-hecho-con-arduino-y-varios-sensores-de-luz-temperatura-y-humedad-que-usa-una-minibomba-de-agua/
+
+
