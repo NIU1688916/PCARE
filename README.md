@@ -148,7 +148,11 @@ Esto levantará el servidor de desarrollo Vue.js.
 
 ## 🌟 Amazing Contributions
 
-TODO
+- Puede cuidar tu planta manteniendo las condiciones óptimas de **luminosidad** y **humedad**.
+- Puede ayudarte a mapear tu casa y encontrar los lugares óptimos para la conexión **WiFi**.
+- [Vídeo sobre algoritmo de exploración (YouTube)](https://www.youtube.com/watch?v=MRHTAj_MG0I)
+- SLAM visual: **ORB-SLAM2**
+
 
 ## 🧱 3D Model
 * Archivos STL ubicados en la carpeta `Designs`:
@@ -178,9 +182,7 @@ TODO
 
 ## 📚 Bibliography
 
-* Repositorios de referencia:
-* https://github.com/weixr18/Pi-SLAM/tree/main?tab=readme-ov-file
-* https://github.com/RubenRS040398/librobot?tab=readme-ov-file
-* Usar IEEE
-* Artículos, manuales y documentación oficial de los paquetes utilizados.
+[1] W. Xiang, “Pi-SLAM,” GitHub repository, 2024. [Online]. Available: https://github.com/weixr18/Pi-SLAM/tree/main?tab=readme-ov-file
+
+[2] R. Rodríguez, “librobot,” GitHub repository, 2024. [Online]. Available: https://github.com/RubenRS040398/librobot?tab=readme-ov-file
 
