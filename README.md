@@ -56,7 +56,7 @@ Está pensado para personas que desean mantener sus plantas saludables sin preoc
 
 ## 💻 Software Scheme
 
-TODO
+![Esquema de software](Designs/software_esquema.png)
 
 ## 🚀 How to Use
 
