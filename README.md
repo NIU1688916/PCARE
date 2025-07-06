@@ -38,11 +38,13 @@ Descripción general del proyecto. Explicar de forma breve qué hace el robot, c
 | *(etc.)*   |                        |                        |
 
 Tabla con imagen debajo nombre y que sea un enlace a comprar
+Claro, aquí tienes la sección con la imagen añadida correctamente en Markdown:
+
 
 ## 🛠️ Hardware Scheme
 
-Se recomienda el uso de [Fritzing](https://fritzing.org/) para esquematizar el montaje del hardware.
-Incluir imagen del esquema en `.png` y/o archivo `.fzz`.
+![Esquema del hardware](Designs/fritzing.jpg)
+
 
 ## 💻 Software Scheme
 
