@@ -10,9 +10,7 @@ Descripción general del proyecto. Explicar de forma breve qué hace el robot, c
 
 ## 🎥 Demo
 
-* Incluir un vídeo demostrativo del robot en acción.
-* Mostrar qué "ve" el robot: por ejemplo, una visualización de SLAM en tiempo real con los puntos que detecta en el entorno.
-* Se puede usar Rviz, Matplotlib o herramientas similares para representar esto.
+[Ver video en Google Drive](https://drive.google.com/file/d/1RFXhxHZZ7uanfg3AD7WiqcH8D6Dph1f0/view?usp=sharing)
 
 ## 🧭 Table of Contents
 
