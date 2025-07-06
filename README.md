@@ -29,24 +29,21 @@ Descripción general del proyecto. Explicar de forma breve qué hace el robot, c
 
 ## 🔩 Components
 
-| Componente                            | Imagen                             | Enlace de Compra                                                                                                     |
-| ------------------------------------- | ---------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| Sensor de humedad del suelo   | ![Sensor humedad](turn0image0)     | [Comprar](https://tienda.bricogeek.com/sensores-humedad/651-sensor-de-humedad-del-suelo.html)                        |
-| Micro bomba de agua con tubo | *(reemplazar con imagen de bomba)* | [Comprar](https://tienda.bricogeek.com/motores-dc/1611-micro-bomba-de-agua-con-tubo.html)                            |
-| Sensor lumínico           | *(insertar imagen)*                | [Comprar](https://tienda.bricogeek.com/sensores-luz-infrarrojos/1317-sensor-de-luz-ambiente-hw5p-1.html)             |
-| Sensor ultrasonido            | *(insertar imagen)*                | [Comprar](https://tienda.bricogeek.com/sensores-distancia/741-sensor-de-distancia-por-ultrasonidos-hc-sr04.html)     |
-| Panel solar                | *(insertar imagen)*                | [Comprar](https://tienda.bricogeek.com/placas-solares/1445-panel-solar-5v-1a-con-usb.html)                           |
-| Cargador LiPo                | *(insertar imagen)*                | [Comprar](https://tienda.bricogeek.com/convertidores-de-voltaje/677-cargador-lipo-powerboost-500.html)               |
-| Batería LiPo 2200 mAh         | *(insertar imagen)*                | [Comprar](https://tienda.bricogeek.com/baterias-lipo/1925-bateria-lipo-2200mah-37v-903759.html)                      |
-| Tarjeta microSD 64 GB         | *(insertar imagen)*                | [Comprar](https://tienda.bricogeek.com/accesorios-raspberry-pi/1355-memoria-microsd-64gb-clase-10-740617274769.html) |
-| Raspberry Pi 4 4 GB          | *(insertar imagen)*                | [Comprar](https://tienda.bricogeek.com/placas-raspberry-pi/1330-raspberry-pi-4-model-b-4-gb.html)                    |
-| Cámara Raspberry Pi V2       | *(insertar imagen)*                | [Comprar](https://tienda.bricogeek.com/accesorios-raspberry-pi/822-camara-raspberry-pi-v2-8-megapixels.html)         |
-| Arduino Nano Every           | *(insertar imagen)*                | [Comprar](https://tienda.bricogeek.com/arduino-original/1433-arduino-nano-every.html)                                |
-| Pulsador switch              | *(insertar imagen)*                | [Comprar](https://tienda.bricogeek.com/componentes/298-pulsador-switch-12mm.html)                                    |
-Faltaria añadir 
-https://tienda.bricogeek.com/motores/285-controlador-de-motores-doble-puente-h-l298.html X2
-https://tienda.bricogeek.com/1060-thickbox_default/controlador-de-motores-doble-puente-h-l298.jpg
-Faltaria AÑADIR los motores 
+| <div align="center">Componente</div> | <div align="center">Imagen</div> | <div align="center">Enlace de Compra</div> |
+|--------------------------------------|----------------------------------|---------------------------------------------|
+| Sensor de humedad del suelo          | ![Sensor](https://tienda.bricogeek.com/2176-thickbox_default/sensor-de-humedad-del-suelo.jpg) | [Comprar](https://tienda.bricogeek.com/sensores-humedad/651-sensor-de-humedad-del-suelo.html) |
+| Micro bomba de agua con tubo         | ![Bomba](https://tienda.bricogeek.com/7299-thickbox_default/micro-bomba-de-agua-con-tubo.jpg) | [Comprar](https://tienda.bricogeek.com/motores-dc/1611-micro-bomba-de-agua-con-tubo.html) |
+| Sensor lumínico                      | ![Luz](https://tienda.bricogeek.com/5787-thickbox_default/sensor-de-luz-ambiente-hw5p-1.jpg) | [Comprar](https://tienda.bricogeek.com/sensores-luz-infrarrojos/1317-sensor-de-luz-ambiente-hw5p-1.html) |
+| Sensor de ultrasonido                | ![Ultrasonido](https://tienda.bricogeek.com/2677-thickbox_default/sensor-de-distancia-por-ultrasonidos-hc-sr04.jpg) | [Comprar](https://tienda.bricogeek.com/sensores-distancia/741-sensor-de-distancia-por-ultrasonidos-hc-sr04.html) |
+| Panel solar                          | ![Solar](https://tienda.bricogeek.com/10204-thickbox_default/panel-solar-5v-1a-con-usb.jpg) | [Comprar](https://tienda.bricogeek.com/placas-solares/1445-panel-solar-5v-1a-con-usb.html) |
+| Cargador LiPo                        | ![Cargador](https://tienda.bricogeek.com/2302-thickbox_default/cargador-lipo-powerboost-500.jpg) | [Comprar](https://tienda.bricogeek.com/convertidores-de-voltaje/677-cargador-lipo-powerboost-500.html) |
+| Batería LiPo 2200 mAh                | ![Batería](https://tienda.bricogeek.com/9353-thickbox_default/bateria-lipo-2200mah-37v-903759.jpg) | [Comprar](https://tienda.bricogeek.com/baterias-lipo/1925-bateria-lipo-2200mah-37v-903759.html) |
+| Tarjeta microSD 128 GB               | ![microSD](https://tienda.bricogeek.com/8263-thickbox_default/memoria-microsd-kingston-128gb-clase-10.jpg) | [Comprar](https://tienda.bricogeek.com/accesorios-raspberry-pi/1760-memoria-microsd-kingston-128gb-clase-10-740617298703.html) |
+| Raspberry Pi 4 (4 GB)                | ![RPi](https://tienda.bricogeek.com/5860-thickbox_default/raspberry-pi-4-model-b-4-gb.jpg) | [Comprar](https://tienda.bricogeek.com/placas-raspberry-pi/1330-raspberry-pi-4-model-b-4-gb.html) |
+| Cámara Raspberry Pi V2 (8 MP)        | ![Cámara](https://tienda.bricogeek.com/3115-thickbox_default/camara-raspberry-pi-v2-8-megapixels.jpg) | [Comprar](https://tienda.bricogeek.com/accesorios-raspberry-pi/822-camara-raspberry-pi-v2-8-megapixels.html) |
+| Arduino Nano Every                   | ![Nano](https://tienda.bricogeek.com/6397-thickbox_default/arduino-nano-every.jpg) | [Comprar](https://tienda.bricogeek.com/arduino-original/1433-arduino-nano-every.html) |
+| Controlador de motores L298 (x2) | ![L298](https://tienda.bricogeek.com/1060-thickbox_default/controlador-de-motores-doble-puente-h-l298.jpg) | [Comprar](https://tienda.bricogeek.com/motores/285-controlador-de-motores-doble-puente-h-l298.html) |
+| Servomotor rotación continua (x4)| ![Servo](https://tienda.bricogeek.com/7967-thickbox_default/servomotor-de-rotacion-continua-s3003-360-grados.jpg) | [Comprar](https://tienda.bricogeek.com/motores/118-servomotor-de-rotacion-continua-s3003-360-grados.html) |
 
 ## 🛠️ Hardware Scheme
 
