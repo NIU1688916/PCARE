@@ -163,15 +163,13 @@ Aspectos que hacen único al robot:
   *(etc.)*
 
 ## 🧱 3D Model
+* Archivos STL ubicados en la carpeta `Designs`:
 
-* Imagen del modelo 3D del robot.
-* Enlace de descarga del archivo `.stl` o `.obj` (ubicado en la carpeta `model_3D`).
-* Opcional: enlace a visualizar el modelo en línea (ej. [TinkerCAD](https://www.tinkercad.com/), [Sketchfab](https://sketchfab.com/)).
+  * [Base.stl](./Designs/Base.stl)
+  * [Maceta.stl](./Designs/Maceta.stl)
+  * [Recipiente.stl](./Designs/Recipiente.stl)
 
 
-Perfecto, aquí tienes el bloque actualizado con las dependencias de software y bibliotecas, siguiendo el mismo formato. He añadido también los enlaces de descarga para **Fritzing**, **Vue.js** y el **IDE de Arduino**, y he organizado los imports para que sean más claros si deseas pegarlos en un script:
-
----
 
 ## 💾 Software Requirements
 
