@@ -1,6 +1,6 @@
 // Define a global variable for the base URL
 function getBaseUrl() {
-    return localStorage.getItem('BASE_URL') || "http://your-server-url.com"; // Default URL
+    return localStorage.getItem('BASE_URL') || "http://your-server-url.com"; // Default URL, put your NGrok URL
 }
 
 // Function to send plant data
