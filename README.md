@@ -180,6 +180,7 @@ TODO
 
 * Repositorios de referencia:
 * https://github.com/weixr18/Pi-SLAM/tree/main?tab=readme-ov-file
+* https://github.com/RubenRS040398/librobot?tab=readme-ov-file
 * Usar IEEE
 * Artículos, manuales y documentación oficial de los paquetes utilizados.
 
